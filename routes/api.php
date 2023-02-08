@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\CategoryController;
+use App\Http\Controllers\API\ImageController;
 use App\Http\Controllers\API\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -35,6 +36,13 @@ Route::group([
     Route::patch('/{id}', [ProductController::class, 'update']);
     Route::delete('/{id}', [ProductController::class, 'destroy']);
 });
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+
+Route::group([
+    'prefix' => 'image',
+    'controller' => ImageController::class
+], function () {
+    Route::get('/', [ImageController::class, 'index']);
+    Route::post('/', [ImageController::class, 'store']);
+    Route::patch('/{id}', [ImageController::class, 'update']);
+    Route::delete('/{id}', [ImageController::class, 'destroy']);
+});
