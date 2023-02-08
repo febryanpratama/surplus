@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\API\CategoryController;
+use App\Http\Controllers\API\CategoryProductController;
 use App\Http\Controllers\API\ImageController;
+use App\Http\Controllers\API\ImageProductController;
 use App\Http\Controllers\API\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -45,4 +47,24 @@ Route::group([
     Route::post('/', [ImageController::class, 'store']);
     Route::patch('/{id}', [ImageController::class, 'update']);
     Route::delete('/{id}', [ImageController::class, 'destroy']);
+});
+
+Route::group([
+    'prefix' => 'category-product',
+    'controller' => CategoryProductController::class
+], function () {
+    Route::get('/', [CategoryProductController::class, 'index']);
+    Route::post('/', [CategoryProductController::class, 'store']);
+    Route::patch('/{id}', [CategoryProductController::class, 'update']);
+    Route::delete('/{id}', [CategoryProductController::class, 'destroy']);
+});
+
+Route::group([
+    'prefix' => 'image-product',
+    'controller' => ImageProductController::class
+], function () {
+    Route::get('/', [ImageProductController::class, 'index']);
+    Route::post('/', [ImageProductController::class, 'store']);
+    Route::patch('/{id}', [ImageProductController::class, 'update']);
+    Route::delete('/{id}', [ImageProductController::class, 'destroy']);
 });

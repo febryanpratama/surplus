@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class ProductImage extends Model
 {
     use HasFactory;
+
+    protected $guarded = ['id'];
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
+    public function image()
+    {
+        return $this->belongsTo(Image::class);
+    }
 }
